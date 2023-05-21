@@ -19,8 +19,8 @@ func Port() string {
 	Config()
 	port := os.Getenv("PORT")
 	if port == "" {
-		fmt.Printf("\nPort is missing in .env! \nFor security, your port has been set to 8080\n\n")
 		port = "8080"
+		fmt.Printf("\nPort is missing in .env! \nFor security, your port has been set to %v\n\n", port)
 	}
 	return ":" + port
 }
@@ -38,8 +38,8 @@ func Domain() string {
 	Config()
 	domain := os.Getenv("DOMAIN")
 	if domain == "" {
-		log.Fatal("Domain URL is missing in .env! For security, your domain has been set to https://localhost/")
 		domain = "https://localhost/"
+		fmt.Printf("Domain URL is missing in .env! For security, your domain has been set to %v", domain)
 	}
 	return domain
 }
