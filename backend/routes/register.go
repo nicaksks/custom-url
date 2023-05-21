@@ -14,6 +14,15 @@ var (
 )
 
 func Register(c *gin.Context) {
+
+	if len(c.PostForm("short")) < 1 || len(c.PostForm("url")) < 1 {
+		c.JSON(http.StatusOK, gin.H{
+			"code":    http.StatusOK,
+			"message": "Domain and url must be greater than 1",
+		})
+		return
+	}
+
 	_, err := database.Find(c.PostForm("short"))
 	if err == mongo.ErrNoDocuments {
 		err := database.Register(c.PostForm("short"), c.PostForm("url"))
